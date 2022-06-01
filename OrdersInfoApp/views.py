@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from .forms import RestaurantForm, DeliverooOrdersForm, StuartOrdersForm
+from django.contrib import messages
 
 # Create your views here.
 # def index(request):
@@ -45,6 +46,8 @@ class RestaurantView(View):
         if form.is_valid():
             # process form cleaned data
             form.save()
+            messages.success(request, 'Restaurant added successfully!')
+            messages.error(request, form.errors)
             return HttpResponseRedirect('/restaurant/')
         return render(request, self.template_name, {'form': form})
 
@@ -64,8 +67,11 @@ class DeliverooView(View):
         if form.is_valid():
             # process form cleaned data
             form.save()
+            messages.success(request, 'Deliveroo Order Added successfully!')
+            messages.error(request, form.errors)
             return HttpResponseRedirect('/deliveroo/')
         return render(request, self.template_name, {'form': form})
+
 
 class StuartView(View):
     form_class = StuartOrdersForm
@@ -83,5 +89,7 @@ class StuartView(View):
         if form.is_valid():
             # process form cleaned data
             form.save()
+            messages.success(request, 'Deliveroo Order Added successfully!')
+            messages.error(request, form.errors)
             return HttpResponseRedirect('/stuart/')
         return render(request, self.template_name, {'form': form})
