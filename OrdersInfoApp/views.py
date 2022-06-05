@@ -1,7 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import ListView
 from .forms import RestaurantForm, DeliverooOrdersForm, StuartOrdersForm
+from .models import Restaurant, DeliverooOrders, StuartOrders
 from django.contrib import messages
 
 # Create your views here.
@@ -51,6 +53,13 @@ class RestaurantView(View):
             return HttpResponseRedirect('/restaurant/')
         return render(request, self.template_name, {'form': form})
 
+
+class RestaurantListView(ListView):
+    model = Restaurant
+    context_object_name = 'restaurants_list'
+    template_name = 'OrdersInfoApp/restaurant_list.html'
+
+
 class DeliverooView(View):
     form_class = DeliverooOrdersForm
     initial = {'key': 'value'}
@@ -71,6 +80,12 @@ class DeliverooView(View):
             messages.error(request, form.errors)
             return HttpResponseRedirect('/deliveroo/')
         return render(request, self.template_name, {'form': form})
+    
+
+class DeliverooListView(ListView):
+    model = DeliverooOrders
+    context_object_name = 'deliveroo_list'
+    template_name = 'OrdersInfoApp/deliveroo_list.html'
 
 
 class StuartView(View):
@@ -93,3 +108,9 @@ class StuartView(View):
             messages.error(request, form.errors)
             return HttpResponseRedirect('/stuart/')
         return render(request, self.template_name, {'form': form})
+
+
+class StuartListView(ListView):
+    model = StuartOrders
+    context_object_name = 'stuart_list'
+    template_name = 'OrdersInfoApp/stuart_list.html'
