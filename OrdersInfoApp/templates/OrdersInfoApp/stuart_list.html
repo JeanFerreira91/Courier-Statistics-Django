@@ -13,27 +13,30 @@
     <body>
         <div class="container">
             <h1>All Stuart Orders in the DB</h1>
-            <hr>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Restaurant Name</th>
-                        <th>Order Fee</th>
-                        <th>Order Multiplier</th>
-                        <th>Order Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in stuart_list %}
-                    <tr>
-                        <td>{{ order.rest_name }}</td>
-                        <td>{{ order.order_fee }}</td>
-                        <td>{{ order.order_multiplier }}</td>
-                        <td>{{ order.order_total }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Restaurant Name</th>
+                            <th scope="col">Order Fee</th>
+                            <th scope="col">Order Multiplier</th>
+                            <th scope="col">Order Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in stuart_list %}
+                        <tr>
+                            <th scope="row">{{ order.id }}</th>
+                            <td>{{ order.rest_name }}</td>
+                            <td>{{ order.order_fee }}</td>
+                            <td>{{ order.order_multiplier }}</td>
+                            <td>{{ order.order_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="container">
             <br>

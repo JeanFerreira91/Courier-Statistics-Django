@@ -13,21 +13,24 @@
     <body>
         <div class="container">
             <h1>All Restaurant's in the Database:</h1>
-            <hr>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Restaurant Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for restaurant in restaurants_list %}
-                    <tr>
-                        <td>{{ restaurant.name }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Restaurant Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for restaurant in restaurants_list %}
+                        <tr>
+                            <th scope="row">{{ restaurant.id }}</th>
+                            <td>{{ restaurant.name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="container">
             <br>
