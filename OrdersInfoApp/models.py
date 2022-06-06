@@ -46,8 +46,17 @@ class DeliverooOrders(models.Model):
     def __str__(self):
         return self.rest_name.name
     
+    # To get the total of a Deliveroo Order (order_fee + order_tip)
     def order_total(self):
         return self.order_fee + self.order_tip
+    
+    # To get the time spent on each Deliveroo order (finish_time - start_time)
+    def time_spent(self):
+        return self.finish_time - self.start_time
+    
+    # To get the the amount of orders the user has done per restaurant.
+    def orders_per_restaurant(self):
+        return DeliverooOrders.objects.filter(rest_name=self.rest_name).count()
     
     class Meta:
         verbose_name_plural = "Deliveroo Orders"

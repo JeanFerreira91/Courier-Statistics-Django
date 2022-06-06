@@ -82,10 +82,16 @@ class DeliverooView(View):
         return render(request, self.template_name, {'form': form})
     
 
-class DeliverooListView(ListView):
+class DeliverooOrdersView(ListView):
     model = DeliverooOrders
     context_object_name = 'deliveroo_list'
     template_name = 'OrdersInfoApp/deliveroo_list.html'
+    
+
+class DeliverooRestOrdersCountView(ListView):
+    model = DeliverooOrders
+    context_object_name = 'deliveroo_rest_list'
+    template_name = 'OrdersInfoApp/deliveroo_rest_list.html'
 
 
 class StuartView(View):
