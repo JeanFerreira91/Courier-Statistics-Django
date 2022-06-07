@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.db.models import Sum, Count
 from django.views import View
 from django.views.generic import ListView
 from .forms import RestaurantForm, DeliverooOrdersForm, StuartOrdersForm
@@ -58,6 +59,10 @@ class RestaurantListView(ListView):
     model = Restaurant
     context_object_name = 'restaurants_list'
     template_name = 'OrdersInfoApp/restaurant_list.html'
+    
+    # DB Query customised to organise the data by restaurant name (ascending)
+    def get_queryset(self):
+        return Restaurant.objects.order_by('name')
 
 
 class DeliverooView(View):
@@ -87,11 +92,20 @@ class DeliverooOrdersView(ListView):
     context_object_name = 'deliveroo_list'
     template_name = 'OrdersInfoApp/deliveroo_list.html'
     
+    # DB Query customised to organise the data by restaurant name (ascending)
+    def get_queryset(self):
+        return DeliverooOrders.objects.all().order_by('-start_time')
+    
 
 class DeliverooRestOrdersCountView(ListView):
     model = DeliverooOrders
     context_object_name = 'deliveroo_rest_list'
     template_name = 'OrdersInfoApp/deliveroo_rest_list.html'
+    
+    def get_queryset(self):
+        
+        return self.model.objects.values('rest_name').distinct().order_by('rest_name')
+        # return DeliverooOrders.objects.all().distinct()
 
 
 class StuartView(View):

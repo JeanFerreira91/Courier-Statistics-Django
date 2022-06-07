@@ -17,17 +17,20 @@
                 <table class="table table-sm table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID</th>
+                            {% comment %} <th scope="col">ID</th> {% endcomment %}
                             <th scope="col">Restaurant Name</th>
-                            <th scope="col"># Orders</th>
+                            {% comment %} <th scope="col"># Orders</th> {% endcomment %}
+                            {% comment %} <th scope="col">Promedy Waiting Time<th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
                         {% for order in deliveroo_rest_list %}
                         <tr>
-                            <th scope="row">{{ order.id }}</th>
+                            {% comment %} <th scope="row">{{ order.id }}</th> {% endcomment %}
                             <td>{{ order.rest_name }}</td>
-                            <td>{{ order.orders_per_restaurant }}</td>
+                            {% comment %} <td>{{ order.get_restaurants }}</td> {% endcomment %}
+                            {% comment %} <td>{{ order.orders_per_restaurant }}</td> {% endcomment %}
+                            {% comment %} <td>{{ order.promedy_waiting_time_minutes }} minutes</td> {% endcomment %}
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -44,6 +47,7 @@
                  / See All 
                 <a href="{% url 'deliveroo-list' %}">
                 Deliveroo Orders
+                </a>
             </p>
             <p>
                 Back to <a href="{% url 'index' %}">Dashboard</a>

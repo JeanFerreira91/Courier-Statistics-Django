@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Count, Avg
 
 # Create your models here.
 class Restaurant(models.Model):
@@ -15,6 +15,7 @@ class Restaurant(models.Model):
     
     class Meta:
         verbose_name_plural = "Restaurants"
+        ordering = ['-name']
 
 
 class DeliverooOrders(models.Model):
@@ -54,12 +55,24 @@ class DeliverooOrders(models.Model):
     def time_spent(self):
         return self.finish_time - self.start_time
     
-    # To get the the amount of orders the user has done per restaurant.
+    # To calculate the total of orders per restaurant
     def orders_per_restaurant(self):
         return DeliverooOrders.objects.filter(rest_name=self.rest_name).count()
     
+    def promedy_waiting_time_minutes(self):
+        return self.time_spent().total_seconds() / 60
+    
+    # To get the day of the order as DD/MM/YYYY
+    def order_date(self):
+        return self.start_time.strftime("%d/%m/%Y")
+    
+    # To get the names of all Deliveroo Restaurants.
+    def get_restaurants(self):
+        return DeliverooOrders.objects.filter(rest_name=self.rest_name).distinct()
+    
     class Meta:
         verbose_name_plural = "Deliveroo Orders"
+        ordering = ['-rest_name']
 
     
 class StuartOrders(models.Model):

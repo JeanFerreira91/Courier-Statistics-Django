@@ -17,7 +17,7 @@
                 <table class="table table-sm table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Restaurant Name</th>
                             <th scope="col">Order Fee</th>
                             <th scope="col">Order Tip</th>
@@ -28,7 +28,7 @@
                     <tbody>
                         {% for order in deliveroo_list %}
                         <tr>
-                            <th scope="row">{{ order.id }}</th>
+                            <th scope="row">{{ order.order_date }}</th>
                             <td>{{ order.rest_name }}</td>
                             <td>£{{ order.order_fee }}</td>
                             <td>£{{ order.order_tip }}</td>
