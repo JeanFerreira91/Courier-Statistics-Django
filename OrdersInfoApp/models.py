@@ -57,7 +57,7 @@ class DeliverooOrders(models.Model):
     
     # To calculate the total of orders per restaurant
     def orders_per_restaurant(self):
-        return DeliverooOrders.objects.filter(rest_name=self.rest_name).count()
+        return self.objects.filter(rest_name=self.rest_name).count()
     
     def promedy_waiting_time_minutes(self):
         return self.time_spent().total_seconds() / 60

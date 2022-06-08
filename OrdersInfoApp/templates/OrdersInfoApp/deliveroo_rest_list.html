@@ -19,18 +19,17 @@
                         <tr>
                             {% comment %} <th scope="col">ID</th> {% endcomment %}
                             <th scope="col">Restaurant Name</th>
-                            {% comment %} <th scope="col"># Orders</th> {% endcomment %}
-                            {% comment %} <th scope="col">Promedy Waiting Time<th> {% endcomment %}
+                            <th scope="col"># Orders</th>
+                            <th scope="col">Promedy Waiting Time<th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for order in deliveroo_rest_list %}
                         <tr>
                             {% comment %} <th scope="row">{{ order.id }}</th> {% endcomment %}
-                            <td>{{ order.rest_name }}</td>
-                            {% comment %} <td>{{ order.get_restaurants }}</td> {% endcomment %}
-                            {% comment %} <td>{{ order.orders_per_restaurant }}</td> {% endcomment %}
-                            {% comment %} <td>{{ order.promedy_waiting_time_minutes }} minutes</td> {% endcomment %}
+                            <td>{{ order.rest_name__name }}</td>
+                            <td>{{ order.rest_name__name__count }}</td>
+                            <td>{{ order }} minutes</td>
                         </tr>
                         {% endfor %}
                     </tbody>

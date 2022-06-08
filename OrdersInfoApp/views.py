@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Sum, Count
+from django.db.models import Sum, Count, Avg
 from django.views import View
 from django.views.generic import ListView
 from .forms import RestaurantForm, DeliverooOrdersForm, StuartOrdersForm
@@ -104,8 +104,9 @@ class DeliverooRestOrdersCountView(ListView):
     
     def get_queryset(self):
         
-        return self.model.objects.values('rest_name').distinct().order_by('rest_name')
-        # return DeliverooOrders.objects.all().distinct()
+        return self.model.objects.values('rest_name__name').distinct().annotate(Count('rest_name__name'))
+        # return self.model.objects.values('rest_name').distinct().order_by('-rest_name')
+        # return self.model.objects.all().values('rest_name').distinct()
 
 
 class StuartView(View):
