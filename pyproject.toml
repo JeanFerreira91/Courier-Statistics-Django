@@ -2,7 +2,7 @@
 name = "Courier-Statistics-Django"
 version = "0.1.0"
 description = ""
-authors = ["JeanFerreira91 <jeanferreira91@hotmail.com>"]
+authors = ["JeanFerreira91"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

@@ -30,9 +30,9 @@
                         <tr>
                             <th scope="row">{{ order.order_date }}</th>
                             <td>{{ order.rest_name }}</td>
-                            <td>£{{ order.order_fee }}</td>
-                            <td>£{{ order.order_tip }}</td>
-                            <td>£{{ order.order_total }}</td>
+                            <td>£{{ order.order_fee|floatformat:2 }}</td>
+                            <td>£{{ order.order_tip|floatformat:2 }}</td>
+                            <td>£{{ order.order_total|floatformat:2 }}</td>
                             <td>{{ order.time_spent }} minutes</td>
                         </tr>
                         {% endfor %}
