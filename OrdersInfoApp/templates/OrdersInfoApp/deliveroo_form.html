@@ -30,7 +30,17 @@
         </div>
         <div class="container">
             <p>
-                Back to <a href="{% url 'index' %}">Dashboard</a> / <a href="{% url 'deliveroo-list' %}">Deliveroo List</a>
+                See All
+                <a href="{% url 'deliveroo-restaurants' %}">
+                Deliveroo Restaurants
+                </a>
+                 /  
+                <a href="{% url 'deliveroo-list' %}">
+                Deliveroo Orders
+                </a>
+            </p>
+            <p>
+                Back to <a href="{% url 'index' %}">Dashboard</a>
             </p>
         </div>
     </body>

@@ -94,7 +94,7 @@ class DeliverooOrdersView(ListView):
     
     # DB Query customised to organise the data by restaurant name (ascending)
     def get_queryset(self):
-        return DeliverooOrders.objects.all().order_by('-start_time')
+        return self.model.objects.all().order_by('-start_time')
     
 
 class DeliverooRestOrdersCountView(ListView):
