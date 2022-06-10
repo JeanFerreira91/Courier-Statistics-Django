@@ -11,18 +11,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </head>
 <body>
+
     <div class="container">
-        <h1>Welcome to Courier Statistics Dashboard</h1>
-        <hr>
-        <p>
-            See all <a href="{% url 'restaurant-list' %}">Restaurants</a>
-        </p>
-        <p>
-            See all <a href="{% url 'deliveroo-list' %}">Deliveroo Orders</a>
-        </p>
-        <p>
-            See all  <a href="{% url 'stuart-list' %}">Stuart Orders</a>
-        </p>
+
+        <div class="jumbotron">
+
+            <h1 class="display-4">Welcome to Courier Statistics Dashboard.</h1>
+            <p class="lead">Create new Restaurants, then add all your Deliveroo and Stuart orders in one place.</p>
+            <hr class="my-4">
+            <p>Select where you want to go: add restaurants or add orders in Deliveroo and Stuart.</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="{% url 'restaurant-list' %}" role="button">All Restaurants</a>
+              <a class="btn btn-primary btn-lg" href="{% url 'deliveroo-list' %}" role="button">Deliveroo Orders</a>
+              <a class="btn btn-primary btn-lg" href="{% url 'stuart-list' %}" role="button">Stuart Orders</a>
+            </p>
+
+        </div>
+
     </div>
+
 </body>
 </html>
