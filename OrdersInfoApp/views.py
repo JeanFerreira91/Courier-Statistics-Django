@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Sum, Count, Avg
+from django.db.models import Sum, Count, Avg, F
 from django.views import View
 from django.views.generic import ListView
 from .forms import RestaurantForm, DeliverooOrdersForm, StuartOrdersForm
@@ -104,9 +104,14 @@ class DeliverooRestOrdersCountView(ListView):
     
     def get_queryset(self):
         
-        return self.model.objects.values('rest_name__name').distinct().annotate(Count('rest_name__name'))
-        # return self.model.objects.values('rest_name').distinct().order_by('-rest_name')
-        # return self.model.objects.all().values('rest_name').distinct()
+        return self.model.objects.values('rest_name__name').distinct().annotate(
+            total_deliveries_done = Count('rest_name__name'),
+            all_orders_fee = Sum('order_fee'),
+            all_orders_tip = Sum('order_tip'),
+            fee_plus_tips = Sum('order_fee') + Sum('order_tip'),
+            avg_order_total = Avg('order_fee') + Avg('order_tip'),
+            avg_waiting_time_minutes = Avg(F('finish_time') - F('start_time')),
+            )
 
 
 class StuartView(View):

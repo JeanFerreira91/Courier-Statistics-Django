@@ -20,7 +20,12 @@
                             {% comment %} <th scope="col">ID</th> {% endcomment %}
                             <th scope="col">Restaurant Name</th>
                             <th scope="col"># Orders</th>
-                            <th scope="col">Promedy Waiting Time<th>
+                            <th scope="col">£ All Orders Fee</th>
+                            <th scope="col">£ All Orders Tip</th>
+                            <th scope="col">£ Fee + Tips</th>
+                            <th scope="col">Avg £ P/Order</th>
+                            <th scope="col">Avg Waiting Time</th>
+                            {% comment %} <th scope="col">Query<th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
@@ -28,8 +33,13 @@
                         <tr>
                             {% comment %} <th scope="row">{{ order.id }}</th> {% endcomment %}
                             <td>{{ order.rest_name__name }}</td>
-                            <td>{{ order.rest_name__name__count }}</td>
-                            <td>{{ order }} minutes</td>
+                            <td>{{ order.total_deliveries_done }}</td>
+                            <td>{{ order.all_orders_fee|floatformat:2 }}</td>
+                            <td>{{ order.all_orders_tip|floatformat:2 }}</td>
+                            <td><strong>{{ order.fee_plus_tips|floatformat:2 }}</strong></td>
+                            <td>{{ order.avg_order_total|floatformat:2 }}</td>
+                            <td>{{ order.avg_waiting_time_minutes }} minutes</td>
+                            {% comment %} <td>{{ order }} minutes</td> {% endcomment %}
                         </tr>
                         {% endfor %}
                     </tbody>
