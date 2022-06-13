@@ -12,49 +12,50 @@
     </head>
     <body>
         <div class="container">
-            <h1>All Deliveroo Orders in the DB</h1>
-            <div class="table-responsive">
-                <table class="table table-sm table-bordered table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Restaurant Name</th>
-                            <th scope="col">Order Fee</th>
-                            <th scope="col">Order Tip</th>
-                            <th scope="col">Order Total</th>
-                            <th scope="col">Time Spent</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in deliveroo_list %}
-                        <tr>
-                            <th scope="row">{{ order.order_date }}</th>
-                            <td>{{ order.rest_name }}</td>
-                            <td>£{{ order.order_fee|floatformat:2 }}</td>
-                            <td>£{{ order.order_tip|floatformat:2 }}</td>
-                            <td>£{{ order.order_total|floatformat:2 }}</td>
-                            <td>{{ order.time_spent }} minutes</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+            <div class="jumbotron">
+
+                <h1 class="display-4">All Deliveroo Orders in the DB</h1>
+                <p class="lead">List with all the Restaurants you have created.</p>
+                <hr class="my-4">
+                <p>Select what you want to do: add Restaurants or go back to Dashboard.</p>
+                <p class="lead">
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo' %}" role="button">Add New Order</a>
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo-restaurants' %}" role="button">All Deliveroo Restaurants</a>
+                  <a class="btn btn-outline-dark btn-lg" href="{% url 'index' %}" role="button">Back to Dashboard</a>
+                </p>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Restaurant Name</th>
+                                <th scope="col">Order Fee</th>
+                                <th scope="col">Order Tip</th>
+                                <th scope="col">Order Total</th>
+                                <th scope="col">Time Spent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in deliveroo_list %}
+                            <tr>
+                                <th scope="row">{{ order.order_date }}</th>
+                                <td>{{ order.rest_name }}</td>
+                                <td>£{{ order.order_fee|floatformat:2 }}</td>
+                                <td>£{{ order.order_tip|floatformat:2 }}</td>
+                                <td>£{{ order.order_total|floatformat:2 }}</td>
+                                <td>{{ order.time_spent }} minutes</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
             </div>
+
         </div>
-        <div class="container">
-            <br>
-            <p>
-                Add a new
-                <a href="{% url 'deliveroo' %}">
-                Deliveroo Order
-                </a>
-                 / See all
-                <a href="{% url 'deliveroo-restaurants' %}">
-                Deliveroo Restaurants
-                </a>
-            </p>
-            <p>
-                Back to <a href="{% url 'index' %}">Dashboard</a>
-            </p>
-        </div>
+
     </body>
 </html>

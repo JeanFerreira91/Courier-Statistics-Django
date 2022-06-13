@@ -12,55 +12,56 @@
     </head>
     <body>
         <div class="container">
-            <h1>Deliveroo Restaurants Dashboard</h1>
-            <div class="table-responsive">
-                <table class="table table-sm table-bordered table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            {% comment %} <th scope="col">ID</th> {% endcomment %}
-                            <th scope="col">Restaurant Name</th>
-                            <th scope="col"># Orders</th>
-                            <th scope="col">£ All Orders Fee</th>
-                            <th scope="col">£ All Orders Tip</th>
-                            <th scope="col">£ Fee + Tips</th>
-                            <th scope="col">Avg £ P/Order</th>
-                            <th scope="col">Avg Waiting Time</th>
-                            {% comment %} <th scope="col">Query<th> {% endcomment %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in deliveroo_rest_list %}
-                        <tr>
-                            {% comment %} <th scope="row">{{ order.id }}</th> {% endcomment %}
-                            <td>{{ order.rest_name__name }}</td>
-                            <td>{{ order.total_deliveries_done }}</td>
-                            <td>{{ order.all_orders_fee|floatformat:2 }}</td>
-                            <td>{{ order.all_orders_tip|floatformat:2 }}</td>
-                            <td><strong>{{ order.fee_plus_tips|floatformat:2 }}</strong></td>
-                            <td>{{ order.avg_order_total|floatformat:2 }}</td>
-                            <td>{{ order.avg_waiting_time_minutes }} minutes</td>
-                            {% comment %} <td>{{ order }} minutes</td> {% endcomment %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+            <div class="jumbotron">
+
+                <h1 class="display-4">Deliveroo Restaurants Analysis</h1>
+                <p class="lead">See all the information related to the Restaurants you deliver for, so you can make better decisions.</p>
+                <hr class="my-4">
+                <p>Select what you want to do: Add new Deliveroo order, see all Deliveroo orders, or go back to Dashboard</p>
+                <p class="lead">
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo' %}" role="button">Add New Order</a>
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo-list' %}" role="button">All Orders</a>
+                  <a class="btn btn-outline-dark btn-lg" href="{% url 'index' %}" role="button">Back to Dashboard</a>
+                </p>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                {% comment %} <th scope="col">ID</th> {% endcomment %}
+                                <th scope="col">Restaurant Name</th>
+                                <th scope="col"># Orders</th>
+                                <th scope="col">£ All Orders Fee</th>
+                                <th scope="col">£ All Orders Tip</th>
+                                <th scope="col">£ Fee + Tips</th>
+                                <th scope="col">Avg £ P/Order</th>
+                                <th scope="col">Avg Waiting Time</th>
+                                {% comment %} <th scope="col">Query<th> {% endcomment %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in deliveroo_rest_list %}
+                            <tr>
+                                {% comment %} <th scope="row">{{ order.id }}</th> {% endcomment %}
+                                <td>{{ order.rest_name__name }}</td>
+                                <td>{{ order.total_deliveries_done }}</td>
+                                <td>{{ order.all_orders_fee|floatformat:2 }}</td>
+                                <td>{{ order.all_orders_tip|floatformat:2 }}</td>
+                                <td><strong>{{ order.fee_plus_tips|floatformat:2 }}</strong></td>
+                                <td>{{ order.avg_order_total|floatformat:2 }}</td>
+                                <td>{{ order.avg_waiting_time_minutes }} minutes</td>
+                                {% comment %} <td>{{ order }} minutes</td> {% endcomment %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
             </div>
+
         </div>
-        <div class="container">
-            <br>
-            <p>
-                Add a new
-                <a href="{% url 'deliveroo' %}">
-                Deliveroo Order
-                </a>
-                 / See All 
-                <a href="{% url 'deliveroo-list' %}">
-                Deliveroo Orders
-                </a>
-            </p>
-            <p>
-                Back to <a href="{% url 'index' %}">Dashboard</a>
-            </p>
-        </div>
+
     </body>
 </html>

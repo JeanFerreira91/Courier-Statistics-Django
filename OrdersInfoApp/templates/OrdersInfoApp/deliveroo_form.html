@@ -13,35 +13,36 @@
     </head>
     <body>
         <div class="container">
-            <h1>Form to Add a New Deliveroo Order:</h1>
-            <hr>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-dismissible alert-success">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>
-                            {{ message }}
-                        </strong>
-                    </div>
-                {% endfor %}
-            {% endif %}
-            {% csrf_token %}
-            {% crispy form form.helper %}
+
+            <div class="jumbotron">
+
+                <h1 class="display-4">Form to Add a New Deliveroo Orders</h1>
+                <p class="lead">Fill all the fields to get a better analysis of your work.</p>
+                <hr class="my-4">
+                <p>Select what you want to do: see all your Deliveroo orders, Deliveroo Restaurants, or go back to Dashboard</p>
+                <p class="lead">
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo-list' %}" role="button">All Orders</a>
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'deliveroo-restaurants' %}" role="button">All Restaurants</a>
+                  <a class="btn btn-outline-dark btn-lg" href="{% url 'index' %}" role="button">Back to Dashboard</a>
+                </p>
+
+                <hr>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>
+                                {{ message }}
+                            </strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% csrf_token %}
+                {% crispy form form.helper %}
+            
+            </div>
+
         </div>
-        <div class="container">
-            <p>
-                See All
-                <a href="{% url 'deliveroo-restaurants' %}">
-                Deliveroo Restaurants
-                </a>
-                 /  
-                <a href="{% url 'deliveroo-list' %}">
-                Deliveroo Orders
-                </a>
-            </p>
-            <p>
-                Back to <a href="{% url 'index' %}">Dashboard</a>
-            </p>
-        </div>
+    
     </body>
 </html>
