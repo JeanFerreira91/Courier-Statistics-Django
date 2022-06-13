@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RestaurantView, IndexView, DeliverooView, StuartView, RestaurantListView, DeliverooOrdersView, DeliverooRestOrdersCountView, StuartListView
+from .views import RestaurantView, IndexView, DeliverooView, StuartView, RestaurantListView, DeliverooOrdersView, DeliverooRestOrdersCountView, StuartOrdersView, StuartRestOrdersCountView
 
 urlpatterns = [
     # Dashboard Index
@@ -16,5 +16,6 @@ urlpatterns = [
     
     # Stuart endpoints
     path('stuart/', StuartView.as_view(), name='stuart'),
-    path('stuart-list/', StuartListView.as_view(), name='stuart-list'),
+    path('stuart-list/', StuartOrdersView.as_view(), name='stuart-list'),
+    path('stuart-restaurants/', StuartRestOrdersCountView.as_view(), name='stuart-restaurants'),
 ]

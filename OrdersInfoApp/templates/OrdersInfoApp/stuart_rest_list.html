@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Stuart Orders List</title>
+        <title>Stuart Restaurant List</title>
         {% comment %} Bootstrap 4 cdn {% endcomment %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -15,13 +15,13 @@
 
             <div class="jumbotron">
 
-                <h1 class="display-4">All Stuart Orders in the DB</h1>
-                <p class="lead">List with all the Stuart orders you have created.</p>
+                <h1 class="display-4">All Stuart Restaurants in the DB</h1>
+                <p class="lead">List with all the Stuart Restautants and analysis on the data.</p>
                 <hr class="my-4">
-                <p>Select what you want to do: add New Orders or go back to Dashboard.</p>
+                <p>Select what you want to do: add New Orders, see all Orders, or go back to Dashboard.</p>
                 <p class="lead">
                   <a class="btn btn-outline-primary btn-lg" href="{% url 'stuart' %}" role="button">Add New Order</a>
-                  <a class="btn btn-outline-primary btn-lg" href="{% url 'stuart-restaurants' %}" role="button">All Restaurants</a>
+                  <a class="btn btn-outline-primary btn-lg" href="{% url 'stuart-list' %}" role="button">All Orders</a>
                   <a class="btn btn-outline-dark btn-lg" href="{% url 'index' %}" role="button">Back to Dashboard</a>
                 </p>
 
@@ -29,21 +29,30 @@
                     <table class="table table-sm table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Restaurant Name</th>
-                                <th scope="col">Order Fee</th>
+                                <th scope="col"># Orders</th>
+                                <th scope="col">Total Orders Fee</th>
+                                <th scope="col">Total Orders Multiplier</th>
+                                <th scope="col">Total Fee + Multiplier</th>
+                                <th scope="col">Avg P/Order</th>
+                                {% comment %} <th scope="col">Order Fee</th>
                                 <th scope="col">Order Multiplier</th>
-                                <th scope="col">Order Total</th>
+                                <th scope="col">Order Total</th> {% endcomment %}
                             </tr>
                         </thead>
                         <tbody>
-                            {% for order in stuart_list %}
+                            {% for order in stuart_rest_list %}
                             <tr>
-                                <th scope="row">{{ order.id }}</th>
-                                <td>{{ order.rest_name }}</td>
-                                <td>{{ order.order_fee }}</td>
+                                <td>{{ order.rest_name__name }}</td>
+                                <td>{{ order.total_deliveries_done }}</td>
+                                <td>£{{ order.all_orders_fee|floatformat:2 }}</td>
+                                <td>£{{ order.all_orders_multiplier|floatformat:2 }}</td>
+                                <td>£{{ order.fee_plus_multiplier|floatformat:2 }}</td>
+                                <td>£{{ order.avg_order_total|floatformat:2 }}</td>
+                                {% comment %} <td>£{{ order.order_fee }}</td>
+                                {% comment %} <td>{{ order.order_fee }}</td>
                                 <td>{{ order.order_multiplier }}</td>
-                                <td>{{ order.order_total }}</td>
+                                <td>{{ order.order_total }}</td> {% endcomment %}
                             </tr>
                             {% endfor %}
                         </tbody>

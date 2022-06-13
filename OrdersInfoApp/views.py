@@ -136,7 +136,25 @@ class StuartView(View):
         return render(request, self.template_name, {'form': form})
 
 
-class StuartListView(ListView):
+class StuartOrdersView(ListView):
     model = StuartOrders
     context_object_name = 'stuart_list'
     template_name = 'OrdersInfoApp/stuart_list.html'
+    
+    # DB Query customised to organise the data by restaurant name (ascending)
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-order_time')
+
+class StuartRestOrdersCountView(ListView):
+    model = StuartOrders
+    context_object_name = 'stuart_rest_list'
+    template_name = 'OrdersInfoApp/stuart_rest_list.html'
+    
+    def get_queryset(self):
+        return self.model.objects.values('rest_name__name').distinct().annotate(
+            total_deliveries_done = Count('rest_name__name'),
+            all_orders_fee = Sum('order_fee'),
+            all_orders_multiplier = Sum('order_multiplier'),
+            fee_plus_multiplier = Sum('order_fee') + Sum('order_multiplier'),
+            avg_order_total = Avg('order_fee') + Avg('order_multiplier'),
+        )
