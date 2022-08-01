@@ -10,6 +10,8 @@ venv/
 Portfolio2022/__pycache__
 .env
 .venv
+venv
+venv/
 # static/
 staticfiles/
 data/
